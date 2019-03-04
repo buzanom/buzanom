@@ -26,10 +26,26 @@ class CareerController extends Controller
             return redirect("/admin");
         }
     }
-    public function career(Request $request)
+    public function career_all(Request $request)
     {
         if ($request->session()->has('admin')) {
             return Datatables::of(Career::orderBy("created_at", "desc"))->make(true);
+        } else {
+            return redirect("/admin");
+        }
+    }
+    public function career_pending(Request $request)
+    {
+        if ($request->session()->has('admin')) {
+            return Datatables::of(Career::where("status",0)->orderBy("created_at", "desc"))->make(true);
+        } else {
+            return redirect("/admin");
+        }
+    }
+    public function career_completed(Request $request)
+    {
+        if ($request->session()->has('admin')) {
+            return Datatables::of(Career::where("status",1)->orderBy("created_at", "desc"))->make(true);
         } else {
             return redirect("/admin");
         }

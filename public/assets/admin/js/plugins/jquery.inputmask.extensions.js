@@ -44,14 +44,16 @@ Optional extensions on the jquery.inputmask base
                     },
                     cardinality: 8,
                     prevalidator: (function () {
-                        var result = [], prefixLimit = 8;
+                        var result = [],
+                            prefixLimit = 8;
                         for (var i = 0; i < prefixLimit; i++) {
                             result[i] = (function () {
                                 var j = i;
                                 return {
                                     validator: function (chrs, buffer, pos, strict, opts) {
                                         if (opts.regex["urlpre" + (j + 1)]) {
-                                            var tmp = chrs, k;
+                                            var tmp = chrs,
+                                                k;
                                             if (((j + 1) - chrs.length) > 0) {
                                                 tmp = buffer.join('').substring(0, ((j + 1) - chrs.length)) + "" + tmp;
                                             }
@@ -59,18 +61,23 @@ Optional extensions on the jquery.inputmask base
                                             if (!strict && !isValid) {
                                                 pos = pos - j;
                                                 for (k = 0; k < opts.defaultPrefix.length; k++) {
-                                                    buffer[pos] = opts.defaultPrefix[k]; pos++;
+                                                    buffer[pos] = opts.defaultPrefix[k];
+                                                    pos++;
                                                 }
                                                 for (k = 0; k < tmp.length - 1; k++) {
-                                                    buffer[pos] = tmp[k]; pos++;
+                                                    buffer[pos] = tmp[k];
+                                                    pos++;
                                                 }
-                                                return { "pos": pos };
+                                                return {
+                                                    "pos": pos
+                                                };
                                             }
                                             return isValid;
                                         } else {
                                             return false;
                                         }
-                                    }, cardinality: j
+                                    },
+                                    cardinality: j
                                 };
                             })();
                         }

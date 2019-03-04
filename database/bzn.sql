@@ -62,6 +62,7 @@ CREATE TABLE `career_contacts` (
   `grade` varchar(10) NOT NULL,
   `position` varchar(50) NOT NULL,
   `employeement` varchar(50) DEFAULT NULL,
+  `status` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -70,13 +71,13 @@ CREATE TABLE `career_contacts` (
 
 /*Data for the table `career_contacts` */
 
-insert  into `career_contacts`(`id`,`name`,`email`,`phone`,`address`,`objective`,`qualification`,`grade`,`position`,`employeement`,`created_at`,`updated_at`,`deleted_at`) values 
-(1,'snehal','snehalgajjar12@gmail.com','7046828181','new ranip, ahmedabad, gujarat-382480','test','b.e.','72.5','fullstack developer','php developer at virtual height','2019-02-08 14:32:06',NULL,NULL),
-(2,'snehal','snehalgajjar12@gmail.com','7046828181','new ranip, ahmedabad, gujarat-382480','test','b.e.','72.5','fullstack developer','php developer at virtual height','2019-02-08 14:32:43',NULL,NULL),
-(3,'snehal','snehalgajjar12@gmail.com','7046828181','new ranip, ahmedabad, gujarat-382480','test','b.e.','72.5','fullstack developer','php developer at virtual height','2019-02-08 14:35:36',NULL,NULL),
-(4,'snehal','snehalgajjar12@gmail.com','7046828181','new ranip, ahmedabad, gujarat-382480','test','b.e.','72.5','fullstack developer','php developer at virtual height','2019-02-08 14:43:47',NULL,NULL),
-(5,'snehal','snehalgajjar12@gmail.com','7046828181','new ranip, ahmedabad, gujarat-382480','test','b.e.','72.5','fullstack developer',NULL,'2019-02-08 14:43:54',NULL,NULL),
-(6,'Gaurav','khokhani19@gmail.com','9409325680','Ahmedabad','fuhysdiufhgk','BE CE','first clas','PHP developer','NA','2019-02-11 05:39:41',NULL,NULL);
+insert  into `career_contacts`(`id`,`name`,`email`,`phone`,`address`,`objective`,`qualification`,`grade`,`position`,`employeement`,`status`,`created_at`,`updated_at`,`deleted_at`) values 
+(1,'snehal','snehalgajjar12@gmail.com','7046828181','new ranip, ahmedabad, gujarat-382480','test','b.e.','72.5','fullstack developer','php developer at virtual height',0,'2019-02-08 14:32:06',NULL,NULL),
+(2,'snehal','snehalgajjar12@gmail.com','7046828181','new ranip, ahmedabad, gujarat-382480','test','b.e.','72.5','fullstack developer','php developer at virtual height',0,'2019-02-08 14:32:43',NULL,NULL),
+(3,'snehal','snehalgajjar12@gmail.com','7046828181','new ranip, ahmedabad, gujarat-382480','test','b.e.','72.5','fullstack developer','php developer at virtual height',0,'2019-02-08 14:35:36',NULL,NULL),
+(4,'snehal','snehalgajjar12@gmail.com','7046828181','new ranip, ahmedabad, gujarat-382480','test','b.e.','72.5','fullstack developer','php developer at virtual height',0,'2019-02-08 14:43:47',NULL,NULL),
+(5,'snehal','snehalgajjar12@gmail.com','7046828181','new ranip, ahmedabad, gujarat-382480','test','b.e.','72.5','fullstack developer',NULL,0,'2019-02-08 14:43:54',NULL,NULL),
+(6,'Gaurav','khokhani19@gmail.com','9409325680','Ahmedabad','fuhysdiufhgk','BE CE','first clas','PHP developer','NA',0,'2019-02-11 05:39:41',NULL,NULL);
 
 /*Table structure for table `contact_us` */
 
@@ -106,6 +107,58 @@ insert  into `contact_us`(`id`,`name`,`email`,`subject`,`message`,`created_at`,`
 (7,'test','test@test.com','test','tetst','2019-02-08 14:43:03',NULL,NULL),
 (8,'avsdhgfa','a@ab.com','aaaadsfd','jfhkjlgwdf','2019-02-11 05:37:34',NULL,NULL),
 (9,'Gaurav','khokhani19@gmail.com','Ahmedabad','jgfdsjhgfjisd','2019-02-11 18:07:20',NULL,NULL);
+
+/*Table structure for table `emp_track` */
+
+DROP TABLE IF EXISTS `emp_track`;
+
+CREATE TABLE `emp_track` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `emp_id` varchar(20) NOT NULL,
+  `date` date NOT NULL,
+  `starttime` time NOT NULL,
+  `endtime` time NOT NULL,
+  `faceloop` varchar(200) DEFAULT NULL,
+  `timeleft` time DEFAULT NULL,
+  `status` varchar(1) NOT NULL DEFAULT 'A',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `emp_track` */
+
+insert  into `emp_track`(`id`,`emp_id`,`date`,`starttime`,`endtime`,`faceloop`,`timeleft`,`status`,`created_at`,`updated_at`,`deleted_at`) values 
+(1,'1','2019-02-26','08:23:52','00:20:19',NULL,'07:59:33','P','2019-02-26 15:26:35','2019-02-26 09:56:35',NULL);
+
+/*Table structure for table `employee` */
+
+DROP TABLE IF EXISTS `employee`;
+
+CREATE TABLE `employee` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `department_id` varchar(20) NOT NULL,
+  `post_id` varchar(20) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `career_id` varchar(20) DEFAULT NULL,
+  `offer_id` varchar(20) NOT NULL,
+  `joining_id` varchar(20) NOT NULL,
+  `profile_id` varchar(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `employee` */
+
+insert  into `employee`(`id`,`name`,`email`,`password`,`username`,`department_id`,`post_id`,`type`,`career_id`,`offer_id`,`joining_id`,`profile_id`,`created_at`,`updated_at`,`deleted_at`) values 
+(1,'snehal','snehal@buzanom.com','snehal@12345','snehal12','full_stack','1','1','1','1','1','1','2019-02-25 12:11:03',NULL,NULL);
 
 /*Table structure for table `site_settings` */
 

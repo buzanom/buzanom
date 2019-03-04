@@ -202,10 +202,94 @@
 </script>
 <script>
     $(function () {
-        $('#career_table').DataTable({
+        $('#career_all_table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{{ url("/career_list") }}',
+            ajax: '{{ url("/career_all_list") }}',
+            columns: [{
+                    data: 'id',
+                    name: 'id'
+                },
+                {
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    data: 'email',
+                    name: 'email'
+                },
+                {
+                    data: 'phone',
+                    name: 'phone'
+                },
+                {
+                    data: 'address',
+                    name: 'address'
+                },
+                {
+                    data: 'qualification',
+                    name: 'qualification'
+                },
+                {
+                    data: 'grade',
+                    name: 'grade'
+                },
+                {
+                    data: 'position',
+                    name: 'position'
+                },
+                {
+                    data: 'employeement',
+                    name: 'employee'
+                }
+            ]
+        });
+        $('#career_pending_table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{{ url("/career_pending_list") }}',
+            columns: [{
+                    data: 'id',
+                    name: 'id'
+                },
+                {
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    data: 'email',
+                    name: 'email'
+                },
+                {
+                    data: 'phone',
+                    name: 'phone'
+                },
+                {
+                    data: 'address',
+                    name: 'address'
+                },
+                {
+                    data: 'qualification',
+                    name: 'qualification'
+                },
+                {
+                    data: 'grade',
+                    name: 'grade'
+                },
+                {
+                    data: 'position',
+                    name: 'position'
+                },
+                {
+                    data: 'employeement',
+                    name: 'employee'
+                }
+            ]
+        });
+        $('#career_completed_table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{{ url("/career_completed_list") }}',
             columns: [{
                     data: 'id',
                     name: 'id'
@@ -245,7 +329,6 @@
             ]
         });
     });
-
 </script>
 <script>
     $('#OpenImgUpload').click(function () {
