@@ -23,7 +23,7 @@ class ContactController extends Controller
             return view("admin/contact", $data);
         } else {
             $request->session()->flash('fail', 'Log In First To Access The Panel!');
-            return redirect("/admin");
+            return redirect("/buzanom_security");
         }
     }
     public function contact(Request $request)
@@ -31,7 +31,7 @@ class ContactController extends Controller
         if ($request->session()->has('admin')) {
             return Datatables::of(Contactus::all())->make(true);
         } else {
-            return redirect("/admin");
+            return redirect("/buzanom_security");
         }
     }
 }

@@ -24,7 +24,7 @@ class AdminController extends Controller
             $debug = env('APP_ENV');
         }
         if ($debug == "development") {
-            $data['title'] = "UNDER CONSTRUCTOR";
+            $data['title'] = "UNDER CONSTRUCTION";
             $data['time'] = date("Y-m-d H:i:s", strtotime("2019-02-09 12:36:00"));
             $data['site_settings'] = Site_settings::first();
             return view("admin/coming_soon", $data);
@@ -52,7 +52,7 @@ class AdminController extends Controller
                 return redirect("/dashboard");
             } else {
                 $request->session()->flash('fail', 'Wrong Login Credentials! Try Again');
-                return redirect("/admin");
+                return redirect("/buzanom_security");
             }
         }else if($type == "E"){
             $result = Employee::whereRaw("email = '" . $email . "' and password = '" . $password . "'")->count();
@@ -63,11 +63,11 @@ class AdminController extends Controller
                 return redirect("/edashboard");
             } else {
                 $request->session()->flash('fail', 'Wrong Login Credentials! Try Again');
-                return redirect("/admin");
+                return redirect("/buzanom_security");
             }
         }else{
             $request->session()->flash('fail', 'Select Type & Try Again');
-            return redirect("/admin");
+            return redirect("/buzanom_security");
         }
     }
 
@@ -94,7 +94,7 @@ class AdminController extends Controller
             return view("admin/dashboard", $data);
         } else {
             $request->session()->flash('fail', 'Log In First To Access The Panel!');
-            return redirect("/admin");
+            return redirect("/buzanom_security");
         }
     }
 
@@ -113,7 +113,7 @@ class AdminController extends Controller
             return view("admin/edashboard", $data);
         } else {
             $request->session()->flash('fail', 'Log In First To Access The Panel!');
-            return redirect("/admin");
+            return redirect("/buzanom_security");
         }
     }
 
@@ -139,7 +139,7 @@ class AdminController extends Controller
             return view("admin/profile", $data);
         } else {
             $request->session()->flash('fail', 'Log In First To Access The Panel!');
-            return redirect("/admin");
+            return redirect("/buzanom_security");
         }
     }
 
@@ -152,7 +152,7 @@ class AdminController extends Controller
             echo $ecount;
         } else {
             $request->session()->flash('fail', 'Log In First To Access The Panel!');
-            return redirect("/admin");
+            return redirect("/buzanom_security");
         }
     }
 
@@ -165,7 +165,7 @@ class AdminController extends Controller
             echo $mcount;
         } else {
             $request->session()->flash('fail', 'Log In First To Access The Panel!');
-            return redirect("/admin");
+            return redirect("/buzanom_security");
         }
     }
 
@@ -178,7 +178,7 @@ class AdminController extends Controller
             echo $mcount;
         } else {
             $request->session()->flash('fail', 'Log In First To Access The Panel!');
-            return redirect("/admin");
+            return redirect("/buzanom_security");
         }   
     }
 
@@ -191,19 +191,82 @@ class AdminController extends Controller
             echo $ucount;
         } else {
             $request->session()->flash('fail', 'Log In First To Access The Panel!');
-            return redirect("/admin");
+            return redirect("/buzanom_security");
         }
     }
 
     public function uploadadminprofilepic(Request $request){
-        if($request->hasFile('image')) {
+        if($request->hasFile('profile_pic')) {
             $admin = $request->session()->get('admin');
-            $file = $request->file('image');
+            $file = $request->file('profile_pic');
             $name = $file->getClientOriginalName().'.'.$file->getClientOriginalExtension();
             $image['filePath'] = $name;
-            $file->move(public_path().'/assets/admin/uploads', $name);
+            $file->move(public_path().'/assets/buzanom_security/uploads', $name);
             $result = Admin::whereRaw("id != '" . $admin['id'] . "'")->update(array("profile_pic",$name));
             echo $result;
+        }
+    }
+
+    public function site_settings(Request $request){
+        if ($request->session()->has('admin')) {
+            $data["title"] = "Site Settings";
+            $admin = $request->session()->get('admin');
+            $data["admin"] = Admin::whereRaw("id = '" . $admin['id'] . "'")->first();
+            $data['site_settings'] = Site_settings::first();
+            return view("admin/site_settings", $data);
+        }else{
+            $request->session()->flash('fail', 'Log In First To Access The Panel!');
+            return redirect("/buzanom_security");
+        }
+    }
+
+    public function site_setting_update(Request $request){
+        if ($request->session()->has('admin')) {
+            $data = array(
+                "address1"=>$request->input("address1"),
+                "address2"=>$request->input("address2"),
+                "lat"=>$request->input("lat"),
+                "lang"=>$request->input("lang"),
+                "support_email"=>$request->input("support_email"),
+                "info_email"=>$request->input("info_email"),
+                "hr_email"=>$request->input("hr_email"),
+                "contact1"=>$request->input("contact1"),
+                "contact2"=>$request->input("contact2"),
+                "facebook_link"=>$request->input("facebook_link"),
+                "linkedin_link"=>$request->input("linkedin_link"),
+                "pinterest_link"=>$request->input("pinterest_link"),
+                "twitter_link"=>$request->input("twitter_link"),
+                "googleplus_link"=>$request->input("googleplus_link"),
+                "skype_link"=>$request->input("skype_link"),
+                "github_link"=>$request->input("github_link"),
+                "tagline"=>$request->input("tagline")
+            );
+            if($request->hasFile('logo')) {
+                $file = $request->file('logo');
+                $name = $file->getClientOriginalName().'.'.$file->getClientOriginalExtension();
+                $image['filePath'] = $name;
+                $file->move(public_path().'/assets/buzanom_security/uploads', $name);
+                $data["logo"] = $name;
+            }
+            Site_settings::where("id","=","1")->update($data);
+            $request->session()->flash('success', 'Site Settings updated Successfully!');
+            return redirect("/profile");
+        }else{
+            $request->session()->flash('fail', 'Log In First To Access The Panel!');
+            return redirect("/buzanom_security");
+        }
+    }
+
+    public function changepassword(Request $request){
+        if ($request->session()->has('admin')) {
+            $admin = $request->session()->get('admin');
+            $password = $request->input("newpwd");
+            Account::where("id","=",$admin["id"])->update(array("password"=>$password));
+            $request->session()->flash('success', 'Password updated Successfully!');
+            return redirect("/buzanom_security");
+        }else{
+            $request->session()->flash('fail', 'Log In First To Access The Panel!');
+            return redirect("/buzanom_security");
         }
     }
 
@@ -213,7 +276,7 @@ class AdminController extends Controller
             $request->session()->forget('admin');
             $request->session()->flush();
             $request->session()->flash('success', 'Logged Out Successfully!');
-            return redirect("/admin");
+            return redirect("/buzanom_security");
         } else if ($request->session()->has('employee')) {
             $employee = $request->session()->get('employee');
             $endtime = date("Y-m-d");
@@ -223,9 +286,9 @@ class AdminController extends Controller
             $employee = $request->session()->forget('employee');
             $request->session()->flush();
             $request->session()->flash('success', 'Logged Out Successfully!');
-            return redirect("/admin");
+            return redirect("/buzanom_security");
         }else{
-            return redirect("/admin");
+            return redirect("/buzanom_security");
         }
     }
 }

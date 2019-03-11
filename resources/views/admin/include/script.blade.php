@@ -15,7 +15,6 @@
 <script src="{{ URL::asset('/') }}assets/admin/js/plugins/fullcalendar.min.js"></script>
 <script src="{{ URL::asset('/') }}assets/admin/js/plugins/jquery-jvectormap.js"></script>
 <script src="{{ URL::asset('/') }}assets/admin/js/plugins/nouislider.min.js"></script>
-<script src="{{ URL::asset('/') }}assets/admin/js/core.js"></script>
 <script src="{{ URL::asset('/') }}assets/admin/js/plugins/arrive.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCO_lhRVRl7Zw9e-uZZ2owl82YE3mJZgP0"></script>
 <script src="{{ URL::asset('/') }}assets/admin/js/plugins/chartist.min.js"></script>
@@ -325,6 +324,172 @@
                 {
                     data: 'employeement',
                     name: 'employee'
+                }
+            ]
+        });
+    });
+</script>
+<script>
+    $(function () {
+        $('#employee_all_table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{{ url("/employee_all_list") }}',
+            columns: [{
+                    data: 'id',
+                    name: 'id'
+                },
+                {
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    data: 'email',
+                    name: 'email'
+                },
+                {
+                    data: 'username',
+                    name: 'username'
+                },
+                {
+                    data: 'mobile',
+                    name: 'mobile'
+                },
+                {
+                    data: 'department',
+                    name: 'department'
+                },
+                {
+                    data: 'post',
+                    name: 'post'
+                },
+                {
+                    data: 'level',
+                    name: 'level'
+                },
+                {
+                    data: 'career_id',
+                    name: 'career_id'
+                },
+                {
+                    data: 'offer_id',
+                    name: 'offer_id'
+                },
+                {
+                    data: 'joining_id',
+                    name: 'joining_id'
+                },
+                {
+                    data: 'profile_id',
+                    name: 'profile_id'
+                }
+            ]
+        });
+        $('#employee_current_table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{{ url("/employee_current_list") }}',
+            columns: [{
+                    data: 'id',
+                    name: 'id'
+                },
+                {
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    data: 'email',
+                    name: 'email'
+                },
+                {
+                    data: 'username',
+                    name: 'username'
+                },
+                {
+                    data: 'mobile',
+                    name: 'mobile'
+                },
+                {
+                    data: 'department',
+                    name: 'department'
+                },
+                {
+                    data: 'post',
+                    name: 'post'
+                },
+                {
+                    data: 'level',
+                    name: 'level'
+                },
+                {
+                    data: 'career_id',
+                    name: 'career_id'
+                },
+                {
+                    data: 'offer_id',
+                    name: 'offer_id'
+                },
+                {
+                    data: 'joining_id',
+                    name: 'joining_id'
+                },
+                {
+                    data: 'profile_id',
+                    name: 'profile_id'
+                }
+            ]
+        });
+        $('#employee_previous_table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{{ url("/employee_previous_list") }}',
+            columns: [{
+                    data: 'id',
+                    name: 'id'
+                },
+                {
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    data: 'email',
+                    name: 'email'
+                },
+                {
+                    data: 'username',
+                    name: 'username'
+                },
+                {
+                    data: 'mobile',
+                    name: 'mobile'
+                },
+                {
+                    data: 'department',
+                    name: 'department'
+                },
+                {
+                    data: 'post',
+                    name: 'post'
+                },
+                {
+                    data: 'level',
+                    name: 'level'
+                },
+                {
+                    data: 'career_id',
+                    name: 'career_id'
+                },
+                {
+                    data: 'offer_id',
+                    name: 'offer_id'
+                },
+                {
+                    data: 'joining_id',
+                    name: 'joining_id'
+                },
+                {
+                    data: 'profile_id',
+                    name: 'profile_id'
                 }
             ]
         });

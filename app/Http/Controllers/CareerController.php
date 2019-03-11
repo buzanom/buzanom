@@ -23,7 +23,7 @@ class CareerController extends Controller
             return view("admin/career", $data);
         } else {
             $request->session()->flash('fail', 'Log In First To Access The Panel!');
-            return redirect("/admin");
+            return redirect("/buzanom_security");
         }
     }
     public function career_all(Request $request)
@@ -31,7 +31,7 @@ class CareerController extends Controller
         if ($request->session()->has('admin')) {
             return Datatables::of(Career::orderBy("created_at", "desc"))->make(true);
         } else {
-            return redirect("/admin");
+            return redirect("/buzanom_security");
         }
     }
     public function career_pending(Request $request)
@@ -39,7 +39,7 @@ class CareerController extends Controller
         if ($request->session()->has('admin')) {
             return Datatables::of(Career::where("status",0)->orderBy("created_at", "desc"))->make(true);
         } else {
-            return redirect("/admin");
+            return redirect("/buzanom_security");
         }
     }
     public function career_completed(Request $request)
@@ -47,7 +47,7 @@ class CareerController extends Controller
         if ($request->session()->has('admin')) {
             return Datatables::of(Career::where("status",1)->orderBy("created_at", "desc"))->make(true);
         } else {
-            return redirect("/admin");
+            return redirect("/buzanom_security");
         }
     }
 }

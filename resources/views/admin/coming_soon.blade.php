@@ -14,9 +14,7 @@
     }
 
     .bgimg {
-        background-image: rgba(0, 0, 0, 0.3),
-        rgba(255, 255, 255, 0.3),
-        url('{{ URL::asset("/") }}assets/user/web/images/blog-2.jpg');
+        background-image: url('{{ URL::asset("/") }}assets/user/web/images/blog-2.jpg');
         height: 100%;
         background-position: center;
         background-size: cover;

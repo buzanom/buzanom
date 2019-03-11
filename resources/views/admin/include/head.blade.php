@@ -4,8 +4,7 @@
     <link rel="icon" type="image/png" href="{{ URL::asset('/') }}assets/general/logo-favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Buzanom-Admin |
-        <?php echo $title; ?>
+        Buzanom-Admin | <?php echo $title; ?>
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
@@ -35,5 +34,11 @@
             transform-origin: 100% 0;
         }
 
+        .logo a img{
+            width:50%;
+        }
+        .dataTable{
+            width:100% !important;
+        }
     </style>
 </head>

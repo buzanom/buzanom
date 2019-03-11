@@ -6,7 +6,8 @@
     -->
     <div class="logo">
         <a href="{{ URL::to('/') }}" class="simple-text logo-normal">
-            BUZANOM
+            <!-- BUZANOM -->
+            <img class="img" id="OpenImgUpload" src="{{ URL::asset('/') }}assets/general/<?php echo $site_settings['logo']; ?>" />
         </a>
     </div>
     <div class="sidebar-wrapper">
@@ -27,6 +28,12 @@
                 <a class="nav-link" href="{{ URL::to('/contact') }}">
                     <i class="material-icons">notifications</i>
                     <p>Contact</p>
+                </a>
+            </li>
+            <li class="nav-item <?php if($title == "Employee"){ echo "active" ; }?>">
+                <a class="nav-link" href="{{ URL::to('/employee') }}">
+                    <i class="material-icons">person</i>
+                    <p>Employee</p>
                 </a>
             </li>
         </ul>
