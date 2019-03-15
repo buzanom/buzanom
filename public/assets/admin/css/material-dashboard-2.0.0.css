@@ -13010,7 +13010,8 @@ fieldset[disabled] .form-check .form-check-input,
 .card.bg-primary,
 .card.card-rotate.bg-primary .front,
 .card.card-rotate.bg-primary .back {
-    background: linear-gradient(60deg, #9c27b0, #972caa);
+    background: linear-gradient(60deg, #00bcd4, #E91E63);
+    /* linear-gradient(60deg, #9c27b0, #972caa); */
 }
 
 .card .card-header-info .card-icon,
@@ -13448,7 +13449,7 @@ fieldset[disabled] .form-check .form-check-input,
 .card [class*="card-header-"]:not(.card-header-icon):not(.card-header-text):not(.card-header-image) {
     border-radius: 3px;
     margin-top: -20px;
-    padding: 15px;
+    /* padding: 15px; */
 }
 
 .card [class*="card-header-"] .card-icon,
@@ -17035,9 +17036,9 @@ h2.title {
     color: #ff9800 !important;
 }
 
-.text-primary {
+/* .text-primary {
     color: #9c27b0 !important;
-}
+} */
 
 .text-danger {
     color: #f44336 !important;
@@ -18807,7 +18808,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
     padding-right: 10px;
     text-transform: capitalize;
     font-size: 13px;
-    padding: 10px 15px;
+    /* padding: 10px 15px; */
 }
 
 .sidebar .sidebar-background {
